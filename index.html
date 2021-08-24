@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css"   href="/css/style.css">
+    <link rel="stylesheet" type="text/css"   href="/css/table.css">
+</head>
+<body id="bod">
+    <div class="top">
+        <div class="title">Pathfinding Visualizer</div>
+        <div>
+            <ul class="nav-bar">
+                <li id="clear-grid">Clear Grid</li>
+                <li id="algorithm-button">Algorithms</li>
+                <button type="button" id="vizualize-algorithm">Vizualize!</button>
+                <li>Mazes</li>
+                <li>Speed</li>
+                <li type="button" id="random-target">Random Target</li>
+            </ul>
+        </div>
+    </div>
+
+    <div>
+        <table id="mainGrid">
+
+        </table>
+    </div>
+
+
+    <script type="module" src="/js/app.js"></script>
+
+
+    <div class="algo-window">
+        <div>
+            <h1 class="algo-window-title">Select an algorithm</h1>
+        </div>
+        <div class="algorithms-wrapper">
+            <div class="algo-box">
+                <button type="button" id="dijkstra-btn" class="algo-btn">Dijkstras</button>
+
+            </div>
+            <div class="algo-box">
+                <button type="button" id="depth-firstSearch-btn" class="algo-btn">Depth-first Search</button>
+
+            </div>
+            <div class="algo-box">
+                <button type="button" id="breadth-firstSearch-btn" class="algo-btn">Breadth-first Search</button>
+
+            </div>
+
+
+
+        </div>
+
+    </div>
+</body>
+</html>

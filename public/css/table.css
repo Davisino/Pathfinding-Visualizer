@@ -1,0 +1,93 @@
+/* Table */
+#mainGrid {
+    margin: 0 auto;
+  }
+  td {
+    width: 22px;
+    height: 22px;
+    border: solid rgb(180, 190, 189) 1px;
+    transition: 100ms;
+  
+    
+  }
+  
+  table {
+    border-collapse: collapse;
+  }
+  .start {
+    background-color: rgb(17, 247, 36);
+  }
+  .target {
+    background-color: rgba(226, 18, 3, 0.836) !important;
+  }
+  .unvisited {
+    background-color: white;
+  }
+  .visited {
+    animation-delay: 0;
+    animation-direction: alternate;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    animation-play-state: running;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-out;
+    animation-name: visited;
+  }
+  .shortest-path {
+    animation-delay: 100ms;
+    animation-direction: alternate;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    animation-play-state: running;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-out;
+    animation-name: shortest-path;
+  }
+  @keyframes visited {
+    0% {
+      transform: scale(0.3);
+      background-color: rgba(251, 255, 2, 0.986);
+      border-radius: 100%;
+    }
+  
+    50% {
+    
+      background-color: rgba(21, 165, 231, 0.75);
+    }
+  
+    75% {
+      transform: scale(1.2);
+      background-color: rgba(30, 188, 199, 0.75);
+    }
+  
+    100% {
+      transform: scale(1);
+      background-color: rgba(9, 110, 226, 0.938);
+    }
+  }
+  
+  @keyframes shortest-path {
+   
+  
+    0% {
+      transform: scale(0.3);
+      background-color: rgba(169, 228, 33, 0.75);
+      border-radius: 100%;
+    }
+  
+    50% {
+      background-color: rgba(197, 238, 15, 0.75);
+    }
+  
+    75% {
+      transform: scale(1.2);
+      background-color: rgba(239, 255, 9, 0.75);
+    }
+  
+    100% {
+      transform: scale(1);
+      background-color: rgba(228, 252, 15, 0.953);
+    }
+  }
+  
+  
