@@ -1,0 +1,1 @@
+Fix the random target after clear board. [bug];

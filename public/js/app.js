@@ -5,8 +5,8 @@ import { restoreToDefault } from "./helperMethods/restoreToDefault.js";
 // import { Queue } from './algorithms/DFS/Queue.js'
 export const rows = 30;
 export const cols = 75;
-const velocity = 1;
-// 5  40  320/
+const velocity = 20;
+// 20 -fast  80-med  150-slow
 let graphVertices = [];
 let tableGraph = new Graph(true, true);
 
@@ -283,12 +283,15 @@ function useDijkstras() {
 let isTargetFound = false;
 let tt = 1;
 function depthFirstTraversal(start, visitedVertices = [start]) {
+  if (start.data === startAndEnd[1]) {
+    isTargetFound = true;
+  }
   if (tt == 1) mergeVertices();
   tt++;
-
   const isTarget = document.getElementById(`${start.data}`);
   if (isTarget.className === "target") {
     isTargetFound = true;
+    return;
   }
 
   start.edges.forEach((edge) => {
@@ -299,33 +302,70 @@ function depthFirstTraversal(start, visitedVertices = [start]) {
       depthFirstTraversal(neighbor, visitedVertices);
     }
   });
+
   return visitedVertices;
 }
-
+let runPathAnimation = false;
 function useDepthFirstTraversal() {
+  // tt and isTargetFound must be set to 1
+  // and false respectivetelly for the depth
+  // first traversal function to work
+  tt = 1;
+  isTargetFound = false;
+  // ------------------------------------------/
   let startValue = document.getElementsByClassName("start")[0].id;
+
   const animations = depthFirstTraversal(
     tableGraph.getVertexByValue(startValue)
   );
-  const shortestPathAnimation = animations.concat(
-    getShortestPathDFS(animations)
-  );
+  const pathAnimation = getShortestPathDFS(animations);
 
-  for (let idx = 0; idx < shortestPathAnimation.length; idx++) {
-    if (shortestPathAnimation[idx][0] == "$") {
-      setTimeout(() => {
-        let index = shortestPathAnimation[idx].slice(1);
-        document.getElementById(`${index}`).className = "shortest-path";
-      }, idx * velocity);
-    } else {
-      setTimeout(() => {
-        const getDataFromVertex = animations[idx].data;
-        document.getElementById(`${getDataFromVertex}`).className = "visited";
-        document.getElementById(`${getDataFromVertex}`).style.borderColor =
-          "white";
-      }, idx * velocity);
-    }
+  let time = animations.length;
+
+  for (let i = 0; i < animations.length; i++) {
+    setTimeout(() => {
+      const getDataFromVertex = animations[i].data;
+      document.getElementById(`${getDataFromVertex}`).className = "visited";
+      document.getElementById(`${getDataFromVertex}`).style.borderColor =
+        "white";
+      time--;
+      console.log(time);
+      if (time === 0) {
+        for (let idx = 0; idx < pathAnimation.length; idx++) {
+          setTimeout(() => {
+            let index = pathAnimation[idx].slice(1);
+            document.getElementById(`${index}`).className = "shortest-path";
+          }, idx * (velocity + 20));
+        }
+      }
+    }, i * velocity);
   }
+  // const shortestPathAnimation = animations.concat(
+  //   getShortestPathDFS(animations)
+  // );
+
+  // for (let idx = 0; idx < shortestPathAnimation.length; idx++) {
+  //   if (
+  //     shortestPathAnimation[idx].data === startAndEnd[0] ||
+  //     shortestPathAnimation[idx].data === startAndEnd[1]
+  //   ) {
+  //     continue;
+  //   }
+
+  //   if (shortestPathAnimation[idx][0] == "$") {
+  //     setTimeout(() => {
+  //       let index = shortestPathAnimation[idx].slice(1);
+  //       document.getElementById(`${index}`).className = "shortest-path";
+  //     }, idx * velocity);
+  //   } else {
+  //     setTimeout(() => {
+  //       const getDataFromVertex = animations[idx].data;
+  //       document.getElementById(`${getDataFromVertex}`).className = "visited";
+  //       document.getElementById(`${getDataFromVertex}`).style.borderColor =
+  //         "white";
+  //     }, idx * velocity);
+  //   }
+  // }
 }
 
 function getShortestPathDFS(array) {
