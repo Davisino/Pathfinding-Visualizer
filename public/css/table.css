@@ -1,4 +1,3 @@
-/* Table */
 #mainGrid {
     margin: 0 auto;
   }
@@ -7,8 +6,6 @@
     height: 22px;
     border: solid rgb(180, 190, 189) 1px;
     transition: 100ms;
-  
-    
   }
   
   table {
@@ -22,6 +19,7 @@
   }
   .unvisited {
     background-color: white;
+    border: solid 1px;
   }
   .visited {
     animation-delay: 0;
