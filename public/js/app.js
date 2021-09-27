@@ -305,7 +305,7 @@ function depthFirstTraversal(start, visitedVertices = [start]) {
 
   return visitedVertices;
 }
-let runPathAnimation = false;
+
 function useDepthFirstTraversal() {
   // tt and isTargetFound must be set to 1
   // and false respectivetelly for the depth
@@ -325,15 +325,21 @@ function useDepthFirstTraversal() {
   for (let i = 0; i < animations.length; i++) {
     setTimeout(() => {
       const getDataFromVertex = animations[i].data;
-      document.getElementById(`${getDataFromVertex}`).className = "visited";
-      document.getElementById(`${getDataFromVertex}`).style.borderColor =
-        "white";
+      let vertex = document.getElementById(`${getDataFromVertex}`);
+
+      if (vertex.id === startAndEnd[0] || vertex.id === startAndEnd[1]) {
+      } else {
+        vertex.className = "visited";
+        vertex.style.borderColor = "white";
+      }
+
       time--;
       console.log(time);
       if (time === 0) {
         for (let idx = 0; idx < pathAnimation.length; idx++) {
+          let index = pathAnimation[idx].slice(1);
+          if (index === startAndEnd[0] || index === startAndEnd[1]) continue;
           setTimeout(() => {
-            let index = pathAnimation[idx].slice(1);
             document.getElementById(`${index}`).className = "shortest-path";
           }, idx * (velocity + 20));
         }
